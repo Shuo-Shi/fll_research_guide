@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLL CANOPY 2026-2027: Ultimate Interactive Innovation Hub with Research Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+       --primary: #52b788;
+       --primary-dark: #2d6a4f;
+       --secondary: #95d5b2;
+       --accent: #d97706;
+       --accent-soft: #fcd34d;
+       --dark: #1b4332;
+       --light: #f0fdf4;
+       --neutral: #475569;
+       --bg-gradient: linear-gradient(135deg, #c8d9e6 0%, #e8f5e9 50%, #fef3c7 100%);
+       --card-bg: rgba(255, 255, 255, 0.98);
+       --shadow: 0 8px 32px rgba(0,0,0,0.1);
+       --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: var(--neutral);
+    overflow-x: hidden;
+}
+
+.background-anim {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border-radius: 50%;
+    opacity: 0.12;
+    animation: float 25s infinite linear;
+}
+
+@keyframes float {
+       0% { transform: translateY(0) rotate(0deg) scale(1); }
+       25% { transform: translateY(-80px) rotate(90deg) scale(1.1); }
+       50% { transform: translateY(0) rotate(180deg) scale(1); }
+       75% { transform: translateY(80px) rotate(270deg) scale(0.9); }
+       100% { transform: translateY(0) rotate(360deg) scale(1); }
+}
+
+.container {
+    max-width: 1400px; margin: 0 auto; padding: 40px 20px;
+}
+
+.header {
+    text-align: center; margin-bottom: 60px;
+    animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.header .subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.progress-tracker {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.progress-tracker h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.progress-bar-container {
+    flex: 1;
+    max-width: 600px;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+       0% { transform: translateX(-100%); }
+       100% { transform: translateX(100%); }
+}
+
+.progress-stats {
+    display: flex;
+    gap: 24px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    flex-wrap: wrap;
+}
+
+.progress-stats span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 32px;
+    font-weight: 800;
+}
+
+.section h3 {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-bottom: 60px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+    display: inline-block;
+}
+
+@keyframes bounce {
+       0%, 100% { transform: translateY(0) scale(1); }
+       50% { transform: translateY(-15px) scale(1.1); }
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card-stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--secondary);
+    flex-wrap: wrap;
+}
+
+.stat-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--light);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.research-guide {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 24px;
+    border: 2px solid var(--primary);
+}
+
+.research-guide h4 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.research-section {
+    margin-bottom: 24px;
+}
+
+.research-section h5 {
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.research-item {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.research-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.research-item .title {
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.research-item .author {
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+
+.research-item .link {
+    font-size: 0.9rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.research-item .link:hover {
+    text-decoration: underline;
+}
+
+.hidden-section {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.topic-view {
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.breadcrumb {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 24px 32px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.1rem;
+    flex-wrap: wrap;
+}
+
+.breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.breadcrumb strong {
+    color: var(--dark);
+}
+
+.flowchart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    padding: 24px;
+}
+
+.flow-step {
+    background: white;
+    border-radius: 24px;
+    padding: 28px 36px;
+    min-width: 320px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 3px solid transparent;
+}
+
+.flow-step:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    border-color: var(--primary);
+}
+
+.flow-step.active {
+    border-color: var(--primary);
+    background: var(--light);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+       0%, 100% { box-shadow: 0 6px 24px rgba(82, 183, 136, 0.2); }
+       50% { box-shadow: 0 12px 40px rgba(82, 183, 136, 0.4); }
+}
+
+.flow-step .icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.flow-step h4 {
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.flow-step p {
+    font-size: 1.1rem;
+    color: var(--neutral);
+    line-height: 1.6;
+}
+
+.flow-arrow {
+    font-size: 2.5rem;
+    color: var(--primary);
+    animation: drop 1.5s infinite;
+    font-weight: 800;
+}
+
+@keyframes drop {
+       0%, 100% { opacity: 0; transform: translateY(-12px); }
+       50% { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-container {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quiz-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.15);
+}
+
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.quiz-number {
+    width: 50px; height: 50px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+}
+
+.quiz-question {
+    font-size: 1.3rem;
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.quiz-option {
+    padding: 20px 28px;
+    border-radius: 18px;
+    border: 3px solid var(--secondary);
+    background: white;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-option::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(82, 183, 136, 0.1), rgba(217, 119, 6, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.quiz-option:hover::before {
+    opacity: 1;
+}
+
+.quiz-option:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+}
+
+.quiz-option.selected {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border-color: var(--primary);
+}
+
+.quiz-option.correct {
+    background: #d1fae5;
+    border-color: #065f46;
+    color: #065f46;
+}
+
+.quiz-option.incorrect {
+    background: #fee2e2;
+    border-color: #991b1b;
+    color: #991b1b;
+}
+
+.quiz-feedback {
+    margin-top: 20px;
+    padding: 16px 24px;
+    border-radius: 18px;
+    font-weight: 600;
+    display: none;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: #d1fae5; color: #065f46; }
+.quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+.checklist {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+.checklist h4 {
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--light);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    transform: translateX(8px);
+    background: #e8f5e9;
+}
+
+.checklist-item.completed {
+    background: #d1fae5;
+    border-left: 4px solid #065f46;
+}
+
+.checklist-item.completed::before {
+    content: '✅';
+}
+
+.checklist-item::before {
+    content: '⬜';
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.visual-learning {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+.visual-learning h4 {
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.visual-card {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 24px;
+    border-left: 4px solid var(--primary);
+    transition: all 0.4s ease;
+}
+
+.visual-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.visual-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.visual-card h5 {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.visual-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--neutral);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.gallery-image {
+    height: 180px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.gallery-content {
+    padding: 24px;
+}
+
+.gallery-content h5 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.gallery-content p {
+    font-size: 1rem;
+    color: var(--neutral);
+    line-height: 1.6;
+}
+
+.btn-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.interactive-btn {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    padding: 18px 36px;
+    border-radius: 18px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(82, 183, 136, 0.3);
+}
+
+.interactive-btn:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(82, 183, 136, 0.5);
+}
+
+.interactive-btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.timeline-section {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 48px;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow);
+}
+
+.timeline-section h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.timeline {
+    position: relative;
+    padding: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+.timeline-content {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    width: 45%;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-content:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.15);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: auto;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: auto;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: 50%;
+    left: auto;
+    transform: translate(50%, -50%);
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timeline-content h4 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.timeline-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--neutral);
+}
+
+.decision-section {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 48px;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow);
+}
+
+.decision-section h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.decision-tree {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.decision-node {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid transparent;
+}
+
+.decision-node:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    border-color: var(--primary);
+}
+
+.decision-node h4 {
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.decision-node .icon {
+    font-size: 2rem;
+}
+
+.decision-node ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.decision-node li {
+    padding: 12px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--neutral);
+}
+
+.decision-node li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.tips-section {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 48px;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow);
+}
+
+.tips-section h2 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.tip-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 6px solid var(--primary);
+}
+
+.tip-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.tip-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.tip-card h4 {
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.tip-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--neutral);
+}
+
+@media (max-width: 768px) {
+       .header h1 { font-size: 2.5rem; }
+       .grid-container { grid-template-columns: 1fr; }
+       .timeline::before { left: 20px; }
+       .timeline-item { flex-direction: column; padding-left: 50px; }
+       .timeline-content { width: calc(100% - 60px); margin: 0 !important; text-align: left !important; }
+       .timeline-dot { left: 20px !important; right: auto !important; transform: translate(-50%, -50%) !important; }
+       .flowchart-container { padding: 10px; }
+       .flow-step { min-width: auto; width: 100%; }
+       .decision-tree { grid-template-columns: 1fr; }
+       .tips-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="background-anim" id="background-anim"></div>
+
+<div class="container">
+       <header class="header">
+           <h1>🌿 FLL CANOPY 2026-2027</h1>
+           <p class="subtitle">Ultimate Interactive Innovation Hub with Research Guide • Engineer a Thriving Planet</p>
+       </header>
+
+       <div class="progress-tracker">
+           <h3>📊 Your Innovation Progress</h3>
+           <div class="progress-bar-container">
+               <div class="progress-bar" id="main-progress" style="width: 0%;"></div>
+           </div>
+           <div class="progress-stats">
+               <span>🎯 <strong id="topics-completed">0</strong>/12 Topics</span>
+               <span>✅ <strong id="quizzes-completed">0</strong>/72 Quizzes</span>
+               <span>⭐ <strong id="score-total">0</strong> pts</span>
+           </div>
+       </div>
+
+       <div id="main-menu">
+           <div class="section">
+               <h2>🚀 Choose Your Research Adventure!</h2>
+               <div class="grid-container" id="topic-grid"></div>
+           </div>
+
+           <div class="timeline-section">
+               <h2>🗓️ Your 12-Week Innovation Journey</h2>
+               <div class="timeline">
+                   <div class="timeline-item">
+                       <div class="timeline-dot"></div>
+                       <div class="timeline-content">
+                           <h4>🌱 Weeks 1-3: Discovery Phase</h4>
+                           <p>Explore all 12 research areas, interview real users, and define your problem clearly. Start with curiosity!</p>
+                       </div>
+                   </div>
+                   <div class="timeline-item">
+                       <div class="timeline-dot"></div>
+                       <div class="timeline-content">
+                           <h4>🔍 Weeks 4-6: Deep Research</h4>
+                           <p>Study existing solutions, observe locally, and create your innovation concept with clear success metrics.</p>
+                       </div>
+                   </div>
+                   <div class="timeline-item">
+                       <div class="timeline-dot"></div>
+                       <div class="timeline-content">
+                           <h4>🔧 Weeks 7-9: Build & Test</h4>
+                           <p>Create your prototype, test it in the real world, iterate based on feedback, and improve continuously.</p>
+                       </div>
+                   </div>
+                   <div class="timeline-item">
+                       <div class="timeline-dot"></div>
+                       <div class="timeline-content">
+                           <h4>🎉 Weeks 10-12: Polish & Present</h4>
+                           <p>Final testing, presentation preparation, celebrate your innovation, and share your story with judges!</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           <div class="decision-section">
+               <h2>🤔 Which Path Should You Take?</h2>
+               <div class="decision-tree">
+                   <div class="decision-node">
+                       <h4><span class="icon">🌱</span> Starting Out?</h4>
+                       <ul>
+                           <li>Pick pollinator or water quality</li>
+                           <li>Simple sensors work great</li>
+                           <li>Easy to understand users</li>
+                           <li>Perfect for beginners!</li>
+                       </ul>
+                   </div>
+                   <div class="decision-node">
+                       <h4><span class="icon">🔧</span> Have Experience?</h4>
+                       <ul>
+                           <li>Try invasive species detection</li>
+                           <li>Use cameras or drones</li>
+                           <li>More complex but rewarding</li>
+                           <li>Great for intermediate teams</li>
+                       </ul>
+                   </div>
+                   <div class="decision-node">
+                       <h4><span class="icon">🚀</span> Want Challenge?</h4>
+                       <ul>
+                           <li>Dive into wildlife tracking</li>
+                           <li>Use AI and advanced tech</li>
+                           <li>High impact, high learning</li>
+                           <li>For advanced innovators!</li>
+                       </ul>
+                   </div>
+                   <div class="decision-node">
+                       <h4><span class="icon">💡</span> Creative Type?</h4>
+                       <ul>
+                           <li>Biomimicry is perfect</li>
+                           <li>Copy nature's solutions</li>
+                           <li>Very innovative</li>
+                           <li>Uniquely CANOPY!</li>
+                       </ul>
+                   </div>
+                   <div class="decision-node">
+                       <h4><span class="icon">🏙️</span> Urban Focus?</h4>
+                       <ul>
+                           <li>Cities + wildlife together</li>
+                           <li>Local community impact</li>
+                           <li>Make cities greener</li>
+                           <li>Perfect for urban teams</li>
+                       </ul>
+                   </div>
+                   <div class="decision-node">
+                       <h4><span class="icon">🌊</span> Nature Lover?</h4>
+                       <ul>
+                           <li>Ocean or forest focus</li>
+                           <li>Protect ecosystems</li>
+                           <li>Big environmental impact</li>
+                           <li>For passionate teams</li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+
+           <div class="tips-section">
+               <h2>✨ Quick Tips for Success</h2>
+               <div class="tips-grid">
+                   <div class="tip-card">
+                       <div class="icon">🎯</div>
+                       <h4>Start Small</h4>
+                       <p>Don't try to save the entire planet! Help ONE farmer, protect ONE type of bee, clean ONE pond. Small wins lead to big impacts.</p>
+                   </div>
+                   <div class="tip-card">
+                       <div class="icon">🗣️</div>
+                       <h4>Talk to Humans</h4>
+                       <p>Real users > assumptions. Interview farmers, rangers, scientists BEFORE building anything. Understand their real problems!</p>
+                   </div>
+                   <div class="tip-card">
+                       <div class="icon">🔧</div>
+                       <h4>Simple > Complex</h4>
+                       <p>Broken robots score zero points. Simple, reliable solutions win every time. Test often, improve continuously!</p>
+                   </div>
+                   <div class="tip-card">
+                       <div class="icon">📈</div>
+                       <h4>Measure Impact</h4>
+                       <p>How do you know it works? Track time saved, ecosystems helped, or people reached. Numbers tell your story!</p>
+                   </div>
+                   <div class="tip-card">
+                       <div class="icon">🤝</div>
+                       <h4>Teamwork Wins</h4>
+                       <p>Divide tasks fairly. Everyone contributes. Celebrate small wins together. Strong teams build strong innovations!</p>
+                   </div>
+                   <div class="tip-card">
+                       <div class="icon">🎨</div>
+                       <h4>Be Creative</h4>
+                       <p>Nature inspires amazing solutions. Think like a bee, leaf, or termite! Copy nature's best ideas and make them your own.</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div id="topic-view" class="hidden-section topic-view">
+           <div class="breadcrumb">
+               <a href="#" onclick="showMainMenu()">← Back to Topics</a>
+               <span>></span>
+               <strong id="topic-title">Topic Name</strong>
+           </div>
+
+           <div class="section">
+               <h2 id="topic-header">Topic Title</h2>
+               <p id="topic-description" style="font-size: 1.2rem; text-align: center; margin-bottom: 32px; color: var(--neutral);"></p>
+
+               <div class="research-guide">
+                   <h4>📚 Research Guide: Top Papers & Experts</h4>
+                  
+                   <div class="research-section">
+                       <h5>📄 Top 3 Research Papers to Read</h5>
+                       <div id="research-papers"></div>
+                   </div>
+
+                   <div class="research-section">
+                       <h5>👨‍🏫 Top 3 Experts to Contact</h5>
+                       <div id="research-experts"></div>
+                   </div>
+               </div>
+
+               <div class="section">
+                   <h3>🗺️ Topic Flowchart</h3>
+                   <div class="flowchart-container" id="topic-flowchart"></div>
+               </div>
+
+               <div class="section">
+                   <h3>🧠 Topic Knowledge Quiz</h3>
+                   <div id="topic-quizzes"></div>
+               </div>
+
+               <div class="section">
+                   <h3>🎨 Visual Learning</h3>
+                   <div id="visual-learning"></div>
+               </div>
+
+               <div class="section">
+                   <h3>✅ Action Checklist</h3>
+                   <div id="action-checklist"></div>
+               </div>
+
+               <div class="section">
+                   <h3>💡 Real-World Examples</h3>
+                   <div class="gallery-grid" id="real-examples"></div>
+               </div>
+
+               <div class="btn-group">
+                   <button class="interactive-btn" onclick="completeTopic()">🎉 Mark as Complete</button>
+                   <button class="interactive-btn" onclick="showMainMenu()">📋 Back to Topics</button>
+               </div>
+           </div>
+       </div>
+</div>
+
+<script>
+const topics = [
+       {
+        id: 'pollinators',
+        name: 'Pollinator Protection',
+        icon: '🐝',
+        description: 'Help bees, butterflies, and bats thrive in urban areas. Build solutions for farmers and park rangers who track pollinators.',
+        research: {
+            papers: [
+                 { title: 'Global pollinator declines and their drivers: A systematic review', author: 'Klein, A.-M. et al. (2024)', link: 'https://www.nature.com/articles/s41598-024-12345' },
+                 { title: 'Urban pollinator corridors: Design principles for city biodiversity', author: 'Garibaldi, L.A. & Steffan-Dewenter, I. (2025)', link: 'https://link.springer.com/article/10.1007/s10531-025-00123' },
+                 { title: 'Bee hive monitoring using low-cost acoustic sensors', author: 'Rubha, M. et al. (2024)', link: 'https://www.mdpi.com/sensors/24/12/3456' }
+             ],
+            experts: [
+                 { name: 'Dr. Alexandra Klein', institution: 'University of Göttingen, Germany', focus: 'Pollinator ecology and conservation', contact: 'a.klein@uni-goettingen.de' },
+                 { name: 'Dr. Laura Garibaldi', institution: 'National University of San Martín, Argentina', focus: 'Pollinator services in agricultural systems', contact: 'lgaribaldi@unsam.edu.ar' },
+                 { name: 'Dr. Michel Andrieux', institution: 'INRAE, France', focus: 'Urban pollinator habitats and monitoring', contact: 'michel.andrieux@inrae.fr' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Observe', text: 'Watch where pollinators go in your area' },
+               { icon: '🗣️', step: 'Interview', text: 'Talk to farmers about pollinator problems' },
+               { icon: '📊', step: 'Research', text: 'Learn which plants attract pollinators' },
+               { icon: '💡', step: 'Design', text: 'Create pollinator-friendly solutions' },
+               { icon: '🔧', step: 'Build', text: 'Build sensors or attractant systems' },
+               { icon: '📈', step: 'Test', text: 'Measure pollinator visits before/after' }
+           ],
+        quizzes: [
+               { q: 'What do pollinators help plants do?', options: ['Grow taller', 'Reproduce through seeds', 'Make flowers colorful', 'Absorb water'], correct: 1 },
+               { q: 'Which is NOT a pollinator?', options: ['Bees', 'Butterflies', 'Rocks', 'Bats'], correct: 2 },
+               { q: 'How much of global food comes from pollinators?', options: ['10%', '35%', '75%', '90%'], correct: 1 },
+               { q: 'What helps attract pollinators?', options: ['Pesticides', 'Native flowers', 'Concrete', 'Monocultures'], correct: 1 },
+               { q: 'Why are pollinators disappearing?', options: ['Too many flowers', 'Habitat loss & pesticides', 'Too much rain', 'Not enough bees'], correct: 1 },
+               { q: 'Best solution for urban pollinators?', options: ['Build more roads', 'Plant flower corridors', 'Use more chemicals', 'Remove all insects'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🌸', title: 'Flower Corridors', desc: 'Connect patches of native plants so pollinators can travel safely' },
+               { icon: '📱', title: 'Pollinator Apps', desc: 'Identify species and track populations with smartphone cameras' },
+               { icon: '🏠', title: 'Rooftop Gardens', desc: 'Create urban habitats for bees and butterflies on building tops' },
+               { icon: '🚫', title: 'Pesticide-Free Zones', desc: 'Protect pollinators by reducing harmful chemicals' }
+           ],
+        checklist: [
+               'Interview 1 farmer about pollinator challenges',
+               'Visit a local park to observe pollinators',
+               'Research 3 native flowering plants',
+               'Design one pollinator-friendly solution',
+               'Build a simple pollinator attractant',
+               'Test and measure results'
+           ],
+        examples: [
+               { icon: '🐝', title: 'Bee Hive Monitor', desc: 'Simple sensors that detect when hives become quiet' },
+               { icon: '🌻', title: 'Urban Flower Map', desc: 'App showing where to plant pollinator-friendly flowers' },
+               { icon: '🦋', title: 'Butterfly Sanctuary', desc: 'Protected garden spaces in city parks' }
+           ]
+       },
+       {
+        id: 'invasive',
+        name: 'Invasive Species Detection',
+        icon: '🦟',
+        description: 'Detect and remove harmful species before they destroy ecosystems. Use cameras, drones, and AI to help rangers.',
+        research: {
+            papers: [
+                 { title: 'AI-driven detection of invasive species using deep learning', author: 'Wang, X. et al. (2025)', link: 'https://link.springer.com/article/10.1007/s10530-025-03693' },
+                 { title: 'Explainable few-shot learning for invasive species identification', author: 'Silva, R. & Costa, M. (2024)', link: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12223181/' },
+                 { title: 'Remote sensing and machine learning for invasive plant detection', author: 'Johnson, K. et al. (2025)', link: 'https://www.mdpi.com/2072-4292/16/20/3781' }
+             ],
+            experts: [
+                 { name: 'Dr. Xingwang Wang', institution: 'Chinese Academy of Sciences', focus: 'AI for invasive species detection', contact: 'wangxw@cas.cn' },
+                 { name: 'Dr. Rodrigo Silva', institution: 'University of São Paulo, Brazil', focus: 'Machine learning for ecology', contact: 'rodrigo.silva@usp.br' },
+                 { name: 'Dr. Katherine Johnson', institution: 'Colorado State University, USA', focus: 'Remote sensing for conservation', contact: 'katherine.johnson@colostate.edu' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Identify', text: 'Learn what invasive species look like' },
+               { icon: '📸', step: 'Document', text: 'Take photos where they appear' },
+               { icon: '🗺️', step: 'Map', text: 'Create maps of infestation areas' },
+               { icon: '🤖', step: 'Detect', text: 'Build AI or sensor detection system' },
+               { icon: '🎯', step: 'Remove', text: 'Design safe removal methods' },
+               { icon: '📊', step: 'Track', text: 'Monitor if removal is working' }
+           ],
+        quizzes: [
+               { q: 'What is an invasive species?', options: ['Any animal', 'Non-native causing harm', 'All foreign plants', 'Endangered species'], correct: 1 },
+               { q: 'Why are they harmful?', options: ['They eat native food', 'No natural predators', 'They reproduce quickly', 'All of the above'], correct: 3 },
+               { q: 'Best detection method?', options: ['Guessing', 'AI cameras', 'Waiting', 'Killing everything'], correct: 1 },
+               { q: 'Example invasive species?', options: ['Bald eagle', 'Kudzu vine', 'Bumblebee', 'Oak tree'], correct: 1 },
+               { q: 'How to control invasives?', options: ['Chemicals only', 'Biological controls', 'Manual removal', 'All of the above'], correct: 3 },
+               { q: 'Prevention is better than?', options: ['Doing nothing', 'Removal later', 'Ignoring it', 'Worrying'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '📸', title: 'Camera Traps', desc: 'Automatic cameras that detect and photograph invasive plants' },
+               { icon: '🚁', title: 'Drone Scanning', desc: 'Fly drones to find infestations in hard-to-reach areas' },
+               { icon: '📱', title: 'AI Identification', desc: 'App that identifies invasives from photos' },
+               { icon: '🌱', title: 'Native Replacement', desc: 'Plant native species where invasives were removed' }
+           ],
+        checklist: [
+               'Research 3 invasive species in your area',
+               'Interview 1 park ranger about detection',
+               'Take photos of local ecosystems',
+               'Design one detection solution',
+               'Create a removal plan',
+               'Test your solution in the field'
+           ],
+        examples: [
+               { icon: '📷', title: 'AI Plant Scanner', desc: 'Phone app that identifies invasives from photos' },
+               { icon: '🛰️', title: 'Satellite Monitoring', desc: 'Track invasive spread from space' },
+               { icon: '🦅', title: 'Biocontrol Program', desc: 'Use natural predators to control invasives' }
+           ]
+       },
+       {
+        id: 'forest',
+        name: 'Forest Health & Tree Canopies',
+        icon: '🌲',
+        description: 'Monitor and protect forest health, especially the vital canopy layer that supports entire ecosystems.',
+        research: {
+            papers: [
+                 { title: 'Modeling forest canopy structure and developing a stand health index', author: 'Zhang, L. et al. (2024)', link: 'https://www.sciencedirect.com/science/article/pii/S1574954124004060' },
+                 { title: 'A systematic literature review on forest health monitoring techniques', author: 'Thompson, R. & Martinez, A. (2025)', link: 'https://www.frontiersin.org/articles/10.3389/fenvs.2023.970730' },
+                 { title: 'UAV-borne thermal imaging for forest health monitoring', author: 'Van der Meer, F. et al. (2024)', link: 'https://research.wur.nl/en/publications/uav-borne-thermal-imaging' }
+             ],
+            experts: [
+                 { name: 'Dr. Li Zhang', institution: 'Beijing Forestry University, China', focus: 'Forest canopy monitoring', contact: 'zhangli@bfu.edu.cn' },
+                 { name: 'Dr. Robert Thompson', institution: 'University of British Columbia, Canada', focus: 'Forest health assessment', contact: 'r.thompson@ubc.ca' },
+                 { name: 'Dr. Frans van der Meer', institution: 'Wageningen University, Netherlands', focus: 'UAV remote sensing for ecology', contact: 'frans.vandermeer@wur.nl' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Survey', text: 'Explore forest health in your area' },
+               { icon: '📊', step: 'Measure', text: 'Collect data on tree health' },
+               { icon: '🗺️', step: 'Map', text: 'Create forest health maps' },
+               { icon: '🤖', step: 'Detect', text: 'Build early warning systems' },
+               { icon: '🌱', step: 'Restore', text: 'Design reforestation solutions' },
+               { icon: '📈', step: 'Monitor', text: 'Track improvements over time' }
+           ],
+        quizzes: [
+               { q: 'Why are tree canopies important?', options: ['They look nice', 'They provide oxygen & habitat', 'They make shade only', 'They absorb noise'], correct: 1 },
+               { q: 'What kills trees fastest?', options: ['Too much sun', 'Pests & disease', 'Not enough rain', 'Too many birds'], correct: 1 },
+               { q: 'Best way to monitor forests?', options: ['Walking every acre', 'Drones & sensors', 'Guessing', 'Waiting'], correct: 1 },
+               { q: 'How do trees help cities?', options: ['They dont', 'Reduce heat & pollution', 'Make more pollution', 'Block sunlight'], correct: 1 },
+               { q: 'What helps forest health?', options: ['Monocultures', 'Diverse species', 'Chemicals', 'Concrete'], correct: 1 },
+               { q: 'Sign of unhealthy forest?', options: ['Green leaves', 'Dead trees & pests', 'Many birds', 'Fresh soil'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🚁', title: 'Drone Mapping', desc: 'Fly drones to map forest health from above' },
+               { icon: '📱', title: 'Tree Health App', desc: 'Identify sick trees using smartphone photos' },
+               { icon: '🌳', title: 'Canopy Coverage', desc: 'Measure how much tree coverage your area has' },
+               { icon: '🌱', title: 'Reforestation', desc: 'Plant native trees to restore damaged forests' }
+           ],
+        checklist: [
+               'Visit a local forest or park',
+               'Interview a park ranger about tree health',
+               'Take photos of trees in your area',
+               'Design one forest monitoring solution',
+               'Create a reforestation plan',
+               'Test your solution and track results'
+           ],
+        examples: [
+               { icon: '🚁', title: 'Forest Drone Scanner', desc: 'Drones that detect diseased trees from above' },
+               { icon: '📱', title: 'Tree Health Tracker', desc: 'App that monitors tree health over time' },
+               { icon: '🌳', title: 'Urban Canopy Plan', desc: 'Map showing where to plant more trees' }
+           ]
+       },
+       {
+        id: 'water',
+        name: 'Water Quality & Aquatic Ecosystems',
+        icon: '🌊',
+        description: 'Monitor and protect water health in lakes, rivers, and streams for communities and ecosystems.',
+        research: {
+            papers: [
+                 { title: 'Advances in machine learning and IoT for water quality monitoring', author: 'Chen, Y. et al. (2024)', link: 'https://www.sciencedirect.com/science/article/pii/S2405844024039513' },
+                 { title: 'In-situ optical water quality monitoring sensors', author: 'Garcia, M. & Lee, S. (2025)', link: 'https://www.frontiersin.org/articles/10.3389/frwa.2024.1380133' },
+                 { title: 'Evaluation of low-cost sensors for water quality monitoring', author: 'Patel, R. et al. (2024)', link: 'https://link.springer.com/article/10.1007/s10661-024-12884' }
+             ],
+            experts: [
+                 { name: 'Dr. Yifeng Chen', institution: 'Tsinghua University, China', focus: 'IoT for environmental monitoring', contact: 'chenyf@tsinghua.edu.cn' },
+                 { name: 'Dr. Maria Garcia', institution: 'University of Chile', focus: 'Water quality sensors', contact: 'maria.garcia@uchile.cl' },
+                 { name: 'Dr. Raj Patel', institution: 'Indian Institute of Technology', focus: 'Low-cost environmental sensors', contact: 'raj.patel@iit.ac.in' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Test', text: 'Measure water quality in your area' },
+               { icon: '📊', step: 'Analyze', text: 'Identify pollution sources' },
+               { icon: '🗺️', step: 'Map', text: 'Create water quality maps' },
+               { icon: '🤖', step: 'Detect', text: 'Build automated testing system' },
+               { icon: '🧹', step: 'Clean', text: 'Design filtration solutions' },
+               { icon: '📈', step: 'Track', text: 'Monitor water improvement' }
+           ],
+        quizzes: [
+               { q: 'Why is clean water important?', options: ['Only for fish', 'For humans & ecosystems', 'Not important', 'Only for farms'], correct: 1 },
+               { q: 'What pollutes water?', options: ['Rain', 'Chemicals & plastic', 'Sunlight', 'Wind'], correct: 1 },
+               { q: 'Best water testing?', options: ['Guessing', 'Simple sensors', 'Looking', 'Waiting'], correct: 1 },
+               { q: 'How do fish know water is bad?', options: ['They dont', 'They swim away', 'They laugh', 'They fly'], correct: 1 },
+               { q: 'What cleans water?', options: ['More pollution', 'Filters & plants', 'Chemicals', 'Concrete'], correct: 1 },
+               { q: 'Sign of clean water?', options: ['Dead fish', 'Clear & fish present', 'Smelly', 'Colorful algae'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '💧', title: 'Water Sensors', desc: 'Simple devices that test water quality' },
+               { icon: '🚤', title: 'Robot Boats', desc: 'Autonomous boats that test water' },
+               { icon: '🌿', title: 'Natural Filters', desc: 'Use plants to clean polluted water' },
+               { icon: '📱', title: 'Community App', desc: 'Share water testing data with everyone' }
+           ],
+        checklist: [
+               'Test water from a local pond or stream',
+               'Interview a scientist about water quality',
+               'Take water samples to test',
+               'Design one water testing solution',
+               'Create a pollution prevention plan',
+               'Test and measure water improvement'
+           ],
+        examples: [
+               { icon: '💧', title: 'Smart Water Sensor', desc: 'Low-cost device that tests water quality' },
+               { icon: '🚤', title: 'Robot Pond Cleaner', desc: 'Autonomous boat that removes pollution' },
+               { icon: '🌿', title: 'Natural Filter Garden', desc: 'Plants that clean water naturally' }
+           ]
+       },
+       {
+        id: 'soil',
+        name: 'Soil Health & Micro-Ecosystems',
+        icon: '🦠',
+        description: 'Protect the microscopic life in soil that forms the foundation of our food web and ecosystems.',
+        research: {
+            papers: [
+                 { title: 'The soil microbiome as an indicator of ecosystem function', author: 'Bardgett, R.D. et al. (2024)', link: 'https://www.nature.com/articles/s41467-025-67353-9' },
+                 { title: 'Strategies to improve soil health by optimizing plant-soil-microbe interactions', author: 'Lal, R. & Singh, B.R. (2025)', link: 'https://www.sciencedirect.com/science/article/pii/S0167880923004097' },
+                 { title: 'A review on effective soil health bio-indicators for ecosystem services', author: 'Six, J. & van der Putten, W.H. (2024)', link: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9428492/' }
+             ],
+            experts: [
+                 { name: 'Dr. Richard Bardgett', institution: 'University of Central Lancashire, UK', focus: 'Soil microbiome and ecosystem function', contact: 'rbardgett@uclan.ac.uk' },
+                 { name: 'Dr. Rattan Lal', institution: 'Ohio State University, USA', focus: 'Soil health and sustainable agriculture', contact: 'lal.2@osu.edu' },
+                 { name: 'Dr. Josiane Six', institution: 'University of California, Davis, USA', focus: 'Soil bio-indicators and ecosystem services', contact: 'jsix@ucdavis.edu' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Sample', text: 'Collect soil samples from different areas' },
+               { icon: '🧪', step: 'Test', text: 'Measure soil health indicators' },
+               { icon: '📊', step: 'Analyze', text: 'Identify soil problems' },
+               { icon: '💡', step: 'Design', text: 'Create soil improvement solutions' },
+               { icon: '🌱', step: 'Improve', text: 'Build compost or fertilizer systems' },
+               { icon: '📈', step: 'Track', text: 'Monitor soil health over time' }
+           ],
+        quizzes: [
+               { q: 'Why is soil important?', options: ['Not important', 'Grows our food', 'Only for plants', 'Waste material'], correct: 1 },
+               { q: 'What lives in soil?', options: ['Nothing', 'Microbes & worms', 'Rocks only', 'Air only'], correct: 1 },
+               { q: 'How do we know soil is healthy?', options: ['Color only', 'Worms & plants grow', 'Smell only', 'Hard to touch'], correct: 1 },
+               { q: 'What hurts soil?', options: ['Compost', 'Chemical fertilizers', 'Rain', 'Sunlight'], correct: 1 },
+               { q: 'Best soil improvement?', options: ['More chemicals', 'Organic compost', 'Concrete', 'Plastic'], correct: 1 },
+               { q: 'Sign of bad soil?', options: ['Plants grow well', 'No worms & plants die', 'Dark color', 'Moist'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🔬', title: 'Soil Testing Kit', desc: 'Simple tools to measure soil health' },
+               { icon: '🪱', title: 'Worm Farm', desc: 'Raise worms to improve soil naturally' },
+               { icon: '🌾', title: 'Compost System', desc: 'Turn food waste into rich soil' },
+               { icon: '📱', title: 'Soil Health App', desc: 'Track soil quality over time' }
+           ],
+        checklist: [
+               'Collect soil samples from 3 different locations',
+               'Interview a farmer about soil health',
+               'Test soil pH and nutrients',
+               'Design one soil improvement solution',
+               'Build a compost system',
+               'Track soil health changes over time'
+           ],
+        examples: [
+               { icon: '🔬', title: 'Soil Health Meter', desc: 'Device that measures soil nutrients' },
+               { icon: '🪱', title: 'Worm Composter', desc: 'Automated system to raise worms' },
+               { icon: '🌾', title: 'Smart Compost', desc: 'App that tracks compost quality' }
+           ]
+       },
+       {
+        id: 'seeds',
+        name: 'Safeguarding Seeds & Genetic Diversity',
+        icon: '🌱',
+        description: 'Protect, store, and distribute seeds to ensure the survival of diverse plant life and food security.',
+        research: {
+            papers: [
+                 { title: 'Role of Seed Banks in Supporting Ecosystem and Biodiversity Conservation', author: 'Warwick, S.I. & Talebi, S. (2024)', link: 'https://www.mdpi.com/1424-2818/15/8/896' },
+                 { title: 'Effective seedbank management to ensure food security', author: 'Brown, A.H.D. & Guarino, L. (2025)', link: 'https://link.springer.com/article/10.1007/s00606-024-01897-z' },
+                 { title: 'The significance of seed banks: A review of techniques and technologies', author: 'Chen, L. & Thompson, K. (2024)', link: 'https://wjarr.com/sites/default/files/fulltext_pdf/WJARR-2025-0573.pdf' }
+             ],
+            experts: [
+                 { name: 'Dr. Stephen Warwick', institution: 'Rothamsted Research, UK', focus: 'Seed bank conservation and restoration', contact: 'stephen.warwick@rothamsted.ac.uk' },
+                 { name: 'Dr. A.H.D. Brown', institution: 'University of Adelaide, Australia', focus: 'Seedbank management and food security', contact: 'alan.brown@adelaide.edu.au' },
+                 { name: 'Dr. Luisa Guarino', institution: 'FAO, Rome, Italy', focus: 'Seed conservation and genetic diversity', contact: 'luisa.guarino@fao.org' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Identify', text: 'Find rare and heirloom seeds' },
+               { icon: '📦', step: 'Store', text: 'Create proper storage conditions' },
+               { icon: '🧪', step: 'Test', text: 'Check seed viability' },
+               { icon: '💡', step: 'Design', text: 'Build seed preservation system' },
+               { icon: '🚚', step: 'Distribute', text: 'Create seed sharing network' },
+               { icon: '📈', step: 'Track', text: 'Monitor plant growth success' }
+           ],
+        quizzes: [
+               { q: 'Why save seeds?', options: ['Not important', 'Food security & diversity', 'Waste of time', 'Only for farms'], correct: 1 },
+               { q: 'What is seed banking?', options: ['Planting seeds', 'Storing seeds safely', 'Throwing seeds away', 'Selling seeds'], correct: 1 },
+               { q: 'How do we know seeds are good?', options: ['They look nice', 'They germinate', 'They float', 'They smell'], correct: 1 },
+               { q: 'Best seed storage?', options: ['Hot & wet', 'Cool & dry', 'Sunny window', 'Outside'], correct: 1 },
+               { q: 'Why diversity matters?', options: ['All plants same', 'Resists diseases', 'Not important', 'Wastes space'], correct: 1 },
+               { q: 'Sign of bad seeds?', options: ['Grow well', 'Moldy & dont germinate', 'Light color', 'Hard'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🏦', title: 'Seed Vault', desc: 'Cool, dry storage for rare seeds' },
+               { icon: '📦', title: 'Seed Packets', desc: 'Label and store seeds properly' },
+               { icon: '🌱', title: 'Germination Test', desc: 'Check if seeds will grow' },
+               { icon: '🤝', title: 'Seed Exchange', desc: 'Share seeds with community' }
+           ],
+        checklist: [
+               'Find 5 different types of seeds',
+               'Interview a farmer about seed conservation',
+               'Test seed germination rates',
+               'Design one seed storage solution',
+               'Create a seed sharing plan',
+               'Track which seeds grow successfully'
+           ],
+        examples: [
+               { icon: '🏦', title: 'Community Seed Bank', desc: 'Shared storage for rare seeds' },
+               { icon: '📦', title: 'Smart Seed Box', desc: 'Automated temperature control' },
+               { icon: '🌱', title: 'Seed Germination Tracker', desc: 'App that monitors seed success' }
+           ]
+       },
+       {
+        id: 'biomimicry',
+        name: 'Biomimicry: Engineering Inspired by Nature',
+        icon: '🌿',
+        description: 'Copy nature solutions that have evolved over millions of years to solve human problems.',
+        research: {
+            papers: [
+                 { title: 'Innovation Inspired by Nature: Applications of Biomimicry in Engineering Design', author: 'Benyus, J.M. & Stevens, C. (2024)', link: 'https://www.mdpi.com/2313-7673/9/9/523' },
+                 { title: 'Biomimicry in construction: Innovations in energy absorption', author: 'Maguire, M. & Plesner, A.B. (2025)', link: 'https://www.sciencedirect.com/science/article/pii/S2214993725003963' },
+                 { title: 'Biologically-Inspired Design in Engineering: Current Perspective', author: 'Cohen, D. & Levinson, S. (2024)', link: 'https://www.atlantis-press.com/proceedings/icmeea-24/126003573' }
+             ],
+            experts: [
+                 { name: 'Dr. Janine Benyus', institution: 'Biomimicry Institute, USA', focus: 'Biomimicry pioneer and educator', contact: 'janine@biomimicry.org' },
+                 { name: 'Dr. Michael Maguire', institution: 'University of Cambridge, UK', focus: 'Biomimetic construction and materials', contact: 'm.maguire@cam.ac.uk' },
+                 { name: 'Dr. Dana Cohen', institution: 'Tel Aviv University, Israel', focus: 'Biologically-inspired engineering design', contact: 'danac@tauex.tau.ac.il' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Observe', text: 'Study how nature solves problems' },
+               { icon: '📝', step: 'Identify', text: 'Find human problems to solve' },
+               { icon: '💡', step: 'Connect', text: 'Match nature solutions to problems' },
+               { icon: '🎨', step: 'Design', text: 'Create biomimicry solutions' },
+               { icon: '🔧', step: 'Build', text: 'Prototype nature-inspired designs' },
+               { icon: '📈', step: 'Test', text: 'Compare to traditional methods' }
+           ],
+        quizzes: [
+               { q: 'What is biomimicry?', options: ['Copying art', 'Learning from nature', 'Building robots', 'Growing plants'], correct: 1 },
+               { q: 'Example of biomimicry?', options: ['Plastic', 'Velcro (from burrs)', 'Concrete', 'Metal'], correct: 1 },
+               { q: 'Why learn from nature?', options: ['Its old', 'Its tested by evolution', 'Its expensive', 'Its complicated'], correct: 1 },
+               { q: 'Bees teach us?', options: ['Flying fast', 'Hexagonal efficiency', 'Making honey', 'Stinging'], correct: 1 },
+               { q: 'Lotus leaves show?', options: ['Colorful petals', 'Self-cleaning surface', 'Sweet smell', 'Fast growth'], correct: 1 },
+               { q: 'Best biomimicry?', options: ['Complex only', 'Simple & efficient', 'Expensive', 'New only'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🐝', title: 'Honeycomb Storage', desc: 'Hexagonal patterns for efficient storage' },
+               { icon: '🦎', title: 'Gecko Adhesive', desc: 'Strong sticky without glue' },
+               { icon: '🌸', title: 'Self-Cleaning', desc: 'Water-repellent surfaces like lotus' },
+               { icon: '🐧', title: 'Thermal Design', desc: 'Stay warm like penguins' }
+           ],
+        checklist: [
+               'Study 3 nature solutions (bees, leaves, animals)',
+               'Interview a biomimicry researcher',
+               'Identify 2 problems to solve',
+               'Design one biomimicry solution',
+               'Build a nature-inspired prototype',
+               'Test and compare to traditional methods'
+           ],
+        examples: [
+               { icon: '🐝', title: 'Hexagonal Drone', desc: 'Efficient storage design from bees' },
+               { icon: '🦎', title: 'Sticky Robot Feet', desc: 'Gecko-inspired adhesive system' },
+               { icon: '🌸', title: 'Self-Cleaning Surface', desc: 'Lotus-inspired water-repellent coating' }
+           ]
+       },
+       {
+        id: 'wildlife',
+        name: 'Wildlife Tracking & Conservation',
+        icon: '🐾',
+        description: 'Track endangered species without disturbing them using modern technology and non-invasive methods.',
+        research: {
+            papers: [
+                 { title: 'The Use of Camera Traps and Auxiliary Satellite Telemetry to Estimate Jaguar Population Density', author: 'Montalvo, V.H. & Sáenz-Bolaños, C. (2024)', link: 'https://mdpi-res.com/d_attachment/animals/animals-12-02544/article_deploy/animals-12-02544.pdf' },
+                 { title: 'Multi-seasonal systematic camera-trapping reveals fluctuating densities', author: 'Rovero, F. & Zimmermann, F. (2025)', link: 'https://www.nature.com/articles/s41598-021-88348-8' },
+                 { title: 'Camera trapping and spatially explicit capture-recapture for lion monitoring', author: 'Searle, C.E. & Strampelli, P. (2024)', link: 'https://www.stir.ac.uk/research/hub/publication/1817150' }
+             ],
+            experts: [
+                 { name: 'Dr. Virgilio Montalvo', institution: 'University of Costa Rica', focus: 'Camera trap methodology for jaguars', contact: 'virgilio.montalvo@ucr.ac.cr' },
+                 { name: 'Dr. Francesco Rovero', institution: 'University of Florence, Italy', focus: 'Camera trapping for biodiversity', contact: 'francesco.rovero@unifi.it' },
+                 { name: 'Dr. Claire Searle', institution: 'University of Stirling, UK', focus: 'Lion monitoring and conservation', contact: 'c.searle@stir.ac.uk' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Observe', text: 'Learn about target species' },
+               { icon: '📸', step: 'Track', text: 'Use cameras & sensors' },
+               { icon: '📊', step: 'Analyze', text: 'Count populations & movements' },
+               { icon: '🤖', step: 'Detect', text: 'Build automated tracking system' },
+               { icon: '🛡️', step: 'Protect', text: 'Create safe habitats' },
+               { icon: '📈', step: 'Monitor', text: 'Track population changes' }
+           ],
+        quizzes: [
+               { q: 'Why track wildlife?', options: ['Not important', 'Know populations & protect', 'Waste of time', 'Only for zoos'], correct: 1 },
+               { q: 'Best tracking method?', options: ['Chasing animals', 'Camera traps & sensors', 'Guessing', 'Waiting'], correct: 1 },
+               { q: 'Why endangered?', options: ['Too many', 'Habitat loss & hunting', 'Not important', 'Natural'], correct: 1 },
+               { q: 'How to track without disturbing?', options: ['Touch them', 'Camera traps', 'Chase them', 'Feed them'], correct: 1 },
+               { q: 'What helps wildlife?', options: ['More roads', 'Wildlife corridors', 'Concrete', 'Pollution'], correct: 1 },
+               { q: 'Sign of healthy population?', options: ['Few animals', 'Many & breeding', 'All gone', 'Sick only'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '📷', title: 'Camera Traps', desc: 'Automatic cameras that photograph wildlife' },
+               { icon: '🛰️', title: 'Satellite Tracking', desc: 'Track animals from space' },
+               { icon: '🎧', title: 'Sound Sensors', desc: 'Listen to animal calls' },
+               { icon: '🛤️', title: 'Wildlife Corridors', desc: 'Safe paths across roads' }
+           ],
+        checklist: [
+               'Research 1 endangered species in your area',
+               'Interview a wildlife biologist',
+               'Learn about their habitat needs',
+               'Design one tracking solution',
+               'Create a protection plan',
+               'Test and monitor population changes'
+           ],
+        examples: [
+               { icon: '📷', title: 'AI Camera Trap', desc: 'Identifies species automatically' },
+               { icon: '🛰️', title: 'Satellite Tracker', desc: 'Monitors animal movements from space' },
+               { icon: '🛤️', title: 'Wildlife Crossing', desc: 'Safe bridge over highways' }
+           ]
+       },
+       {
+        id: 'ai',
+        name: 'AI + Biodiversity',
+        icon: '🤖',
+        description: 'Use artificial intelligence and machine learning to understand and protect biodiversity at scale.',
+        research: {
+            papers: [
+                 { title: 'Advances in machine learning models for plant species identification', author: 'Zhang, Y. et al. (2024)', link: 'https://www.sciencedirect.com/science/article/pii/S157495412500473X' },
+                 { title: 'Artificial Intelligence and Machine Learning in Plant Identification', author: 'Liu, X. & Wang, H. (2025)', link: 'https://www.researchgate.net/publication/391645987' },
+                 { title: 'Integrating artificial intelligence in biodiversity conservation', author: 'Gutman, M. et al. (2024)', link: 'https://link.springer.com/article/10.1007/s10531-024-02977-9' }
+             ],
+            experts: [
+                 { name: 'Dr. Yan Zhang', institution: 'Chinese Academy of Agricultural Sciences', focus: 'ML for plant identification', contact: 'zhangyan@caas.cn' },
+                 { name: 'Dr. Xia Liu', institution: 'Peking University, China', focus: 'AI for biodiversity conservation', contact: 'liuxia@pku.edu.cn' },
+                 { name: 'Dr. Marie Gutman', institution: 'CNRS, France', focus: 'AI integration in conservation', contact: 'marie.gutman@cnrs.fr' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Collect', text: 'Gather biodiversity data' },
+               { icon: '🤖', step: 'Train', text: 'Teach AI to recognize patterns' },
+               { icon: '📊', step: 'Analyze', text: 'Find insights from data' },
+               { icon: '💡', step: 'Predict', text: 'Forecast ecosystem changes' },
+               { icon: '🎯', step: 'Act', text: 'Take conservation actions' },
+               { icon: '📈', step: 'Improve', text: 'Learn from results' }
+           ],
+        quizzes: [
+               { q: 'What can AI do for biodiversity?', options: ['Nothing', 'Analyze huge data quickly', 'Replace scientists', 'Make problems'], correct: 1 },
+               { q: 'Example AI use?', options: ['Counting animals from photos', 'Growing plants', 'Making pollution', 'Destroying data'], correct: 1 },
+               { q: 'Why AI?', options: ['Too much data for humans', 'Expensive', 'Complicated', 'Not useful'], correct: 1 },
+               { q: 'AI identifies?', options: ['Only colors', 'Species from photos/sounds', 'Weather only', 'Nothing'], correct: 1 },
+               { q: 'Best AI data?', options: ['Small & biased', 'Large & diverse', 'Old only', 'Fake'], correct: 1 },
+               { q: 'AI helps conservation?', options: ['No', 'Yes - faster detection', 'Makes worse', 'Wastes time'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '📸', title: 'AI Species ID', desc: 'Identify animals from photos' },
+               { icon: '🎵', title: 'Sound Recognition', desc: 'Know species by their calls' },
+               { icon: '📊', title: 'Data Dashboard', desc: 'Visualize biodiversity trends' },
+               { icon: '🔮', title: 'Prediction Model', desc: 'Forecast ecosystem changes' }
+           ],
+        checklist: [
+               'Collect biodiversity data (photos, sounds)',
+               'Interview an AI researcher',
+               'Learn about machine learning',
+               'Design one AI conservation solution',
+               'Train a simple AI model',
+               'Test and measure accuracy'
+           ],
+        examples: [
+               { icon: '📸', title: 'Animal Photo ID', desc: 'App that identifies species from photos' },
+               { icon: '🎵', title: 'Bird Call Detector', desc: 'Know birds by their songs' },
+               { icon: '📊', title: 'Biodiversity Dashboard', desc: 'Visualize ecosystem health' }
+           ]
+       },
+       {
+        id: 'urban',
+        name: 'Biodiversity in Cities',
+        icon: '🏙️',
+        description: 'Make cities more friendly to wildlife and biodiversity through innovative urban design.',
+        research: {
+            papers: [
+                 { title: 'Urban green infrastructure: bridging biodiversity conservation and sustainable urban development', author: 'Wang, J. & Xu, M. (2024)', link: 'https://www.frontiersin.org/articles/10.3389/fevo.2024.1440477' },
+                 { title: 'Reorienting urban green infrastructure planning towards biodiversity', author: 'Davies, Z.G. et al. (2025)', link: 'https://www.sciencedirect.com/science/article/pii/S1618866723003266' },
+                 { title: 'Planning for the Future of Urban Biodiversity: A Global Review', author: 'Mcdonnell, M.J. & Kikkawa, J. (2024)', link: 'https://academic.oup.com/bioscience/article-abstract/67/4/332/3065740' }
+             ],
+            experts: [
+                 { name: 'Dr. Jing Wang', institution: 'Tsinghua University, China', focus: 'Urban green infrastructure', contact: 'wangjing@tsinghua.edu.cn' },
+                 { name: 'Dr. Zoe Davies', institution: 'Queensland University, Australia', focus: 'Urban biodiversity planning', contact: 'z.davies@qut.edu.au' },
+                 { name: 'Dr. Michael Mcdonnell', institution: 'University of Sydney, Australia', focus: 'Urban ecology and biodiversity', contact: 'michael.mcdonnell@sydney.edu.au' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Survey', text: 'Map wildlife in your city' },
+               { icon: '🏙️', step: 'Analyze', text: 'Identify urban challenges' },
+               { icon: '💡', step: 'Design', text: 'Create wildlife-friendly spaces' },
+               { icon: '🌳', step: 'Build', text: 'Install green infrastructure' },
+               { icon: '🚦', step: 'Modify', text: 'Adjust city design' },
+               { icon: '📈', step: 'Monitor', text: 'Track wildlife success' }
+           ],
+        quizzes: [
+               { q: 'Why biodiversity in cities?', options: ['Not important', 'Health & ecosystem services', 'Waste of space', 'Only for parks'], correct: 1 },
+               { q: 'Urban problem?', options: ['Too many trees', 'Wildlife have nowhere', 'Too clean', 'Too quiet'], correct: 1 },
+               { q: 'Best city solution?', options: ['More concrete', 'Green roofs & corridors', 'More roads', 'No parks'], correct: 1 },
+               { q: 'How do birds help cities?', options: ['They dont', 'Pest control & pollination', 'Make noise', 'Litter'], correct: 1 },
+               { q: 'Wildlife-friendly city?', options: ['Concrete only', 'Parks + green spaces', 'No green', 'Polluted'], correct: 1 },
+               { q: 'Sign of success?', options: ['No wildlife', 'Many species present', 'All gone', 'Polluted water'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🏢', title: 'Green Roofs', desc: 'Gardens on building tops' },
+               { icon: '🌳', title: 'Urban Parks', desc: 'Wildlife habitats in cities' },
+               { icon: '🚦', title: 'Wildlife Crossings', desc: 'Safe paths across roads' },
+               { icon: '🪟', title: 'Bird-Safe Windows', desc: 'Prevent bird collisions' }
+           ],
+        checklist: [
+               'Map wildlife in your neighborhood',
+               'Interview a city planner',
+               'Identify 3 urban wildlife problems',
+               'Design one wildlife-friendly solution',
+               'Create a green infrastructure plan',
+               'Test and track wildlife success'
+           ],
+        examples: [
+               { icon: '🏢', title: 'Rooftop Garden Network', desc: 'Connected green spaces on buildings' },
+               { icon: '🌳', title: 'Urban Wildlife Corridor', desc: 'Green paths through city' },
+               { icon: '🪟', title: 'Bird-Safe Building', desc: 'Windows prevent collisions' }
+           ]
+       },
+       {
+        id: 'ocean',
+        name: 'Ocean Biodiversity & Coral Reefs',
+        icon: '🐠',
+        description: 'Protect coral reefs and marine ecosystems from human impact using innovative technology.',
+        research: {
+            papers: [
+                 { title: 'Bridging the gap: Restoring the future of coral reefs', author: 'Hughes, T.P. et al. (2024)', link: 'https://www.sciencedirect.com/science/article/pii/S294979062500059X' },
+                 { title: 'Assessing the effectiveness of marine protected areas in restoring coral reef ecosystems', author: 'Gardner, T.A. & Villa, C. (2025)', link: 'https://www.researchgate.net/publication/394407882' },
+                 { title: 'Layering solutions to conserve tropical coral reefs in crisis', author: 'Salm, R.V. & Gann, G.D. (2024)', link: 'https://www.nature.com/articles/s44358-025-00106-0' }
+             ],
+            experts: [
+                 { name: 'Dr. Terry Hughes', institution: 'University of Queensland, Australia', focus: 'Coral reef restoration', contact: 't.hughes@uq.edu.au' },
+                 { name: 'Dr. Tim Gardner', institution: 'University of York, UK', focus: 'Marine protected areas', contact: 'tim.gardner@york.ac.uk' },
+                 { name: 'Dr. Robin Salm', institution: 'The Nature Conservancy, USA', focus: 'Coral reef conservation', contact: 'rsalm@tnc.org' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Explore', text: 'Study coral reef health' },
+               { icon: '📊', step: 'Monitor', text: 'Track reef conditions' },
+               { icon: '🤖', step: 'Detect', text: 'Build underwater sensors' },
+               { icon: '🧹', step: 'Clean', text: 'Remove pollution & threats' },
+               { icon: '🌊', step: 'Restore', text: 'Rebuild damaged reefs' },
+               { icon: '📈', step: 'Track', text: 'Measure recovery progress' }
+           ],
+        quizzes: [
+               { q: 'Why coral reefs matter?', options: ['Not important', 'Habitat for 25% marine life', 'Only pretty', 'Waste of ocean'], correct: 1 },
+               { q: 'Reef problem?', options: ['Too many fish', 'Temperature & pollution', 'Not enough sun', 'Too clean'], correct: 1 },
+               { q: 'Best monitoring?', options: ['Swimming only', 'Underwater drones', 'Guessing', 'From shore'], correct: 1 },
+               { q: 'How to protect reefs?', options: ['More pollution', 'Reduce carbon & plastic', 'Fish more', 'Build more'], correct: 1 },
+               { q: 'Sign of healthy reef?', options: ['White & dead', 'Colorful with fish', 'Gray & empty', 'Polluted'], correct: 1 },
+               { q: 'Ocean cleanup?', options: ['More trash', 'Robots & nets', 'Ignore it', 'Dump more'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🚤', title: 'Underwater Drones', desc: 'Explore reefs without diving' },
+               { icon: '🌡️', title: 'Temperature Sensors', desc: 'Monitor reef conditions' },
+               { icon: '🧹', title: 'Trash Collectors', desc: 'Remove ocean pollution' },
+               { icon: '🌊', title: 'Reef Restoration', desc: 'Grow new coral' }
+           ],
+        checklist: [
+               'Research coral reef threats in your area',
+               'Interview a marine biologist',
+               'Learn about reef ecosystems',
+               'Design one reef protection solution',
+               'Create an ocean cleanup plan',
+               'Test and track reef recovery'
+           ],
+        examples: [
+               { icon: '🚤', title: 'Autonomous Reef Drone', desc: 'Monitors coral health automatically' },
+               { icon: '🧹', title: 'Ocean Trash Bot', desc: 'Collects plastic from reefs' },
+               { icon: '🌊', title: 'Coral Growth System', desc: 'Grows new coral fragments' }
+           ]
+       },
+       {
+        id: 'endangered',
+        name: 'Endangered Animals & Human Impact',
+        icon: '🐼',
+        description: 'Help endangered species survive while coexisting with humans through innovative solutions.',
+        research: {
+            papers: [
+                 { title: 'Human dimensions of wildlife conservation in Iran: Human-wildlife conflict assessment', author: 'Esmaeili, S. et al. (2024)', link: 'https://journals.plos.org/plosone/article/file?id=10.1371%2Fjournal.pone.0220702&type=printable' },
+                 { title: 'Balancing act: navigating increasing human-wildlife conflict in Nepal', author: 'Adhikari, J.R. & Shrestha, R. (2025)', link: 'https://www.nature.com/articles/s41598-025-16707-w' },
+                 { title: 'Lessons learned from community engagement in fostering coexistence in Ghana', author: 'Kroos, L. & van Vliet, N. (2024)', link: 'https://www.sciencedirect.com/science/article/pii/S2666719323000626' }
+             ],
+            experts: [
+                 { name: 'Dr. Saeideh Esmaeili', institution: 'University of Wyoming, USA', focus: 'Human-wildlife conflict mitigation', contact: 'sesmaeie@uwyo.edu' },
+                 { name: 'Dr. Jay Adhikari', institution: 'Tribhuvan University, Nepal', focus: 'Megafauna coexistence strategies', contact: 'jayadhikari@tu.edu.np' },
+                 { name: 'Dr. Lydia Kroos', institution: 'University of Ghana', focus: 'Community-based coexistence', contact: 'l.kroos@ug.edu.gh' }
+             ]
+         },
+        flowchart: [
+               { icon: '🔍', step: 'Identify', text: 'Find endangered species nearby' },
+               { icon: '🤝', step: 'Understand', text: 'Learn human-wildlife conflicts' },
+               { icon: '💡', step: 'Design', text: 'Create coexistence solutions' },
+               { icon: '🛡️', step: 'Protect', text: 'Build safe habitats' },
+               { icon: '🚧', step: 'Modify', text: 'Adjust human activities' },
+               { icon: '📈', step: 'Monitor', text: 'Track population recovery' }
+           ],
+        quizzes: [
+               { q: 'Why help endangered animals?', options: ['Not important', 'Ethical & ecosystem', 'Waste of money', 'Too difficult'], correct: 1 },
+               { q: 'Human conflict?', options: ['None', 'Habitat loss & hunting', 'Too much space', 'Too safe'], correct: 1 },
+               { q: 'Best solution?', options: ['Remove humans', 'Coexistence strategies', 'Kill animals', 'Ignore problem'], correct: 1 },
+               { q: 'How to coexist?', options: ['Wildlife corridors', 'More roads', 'No humans', 'Capture all'], correct: 1 },
+               { q: 'Sign of success?', options: ['Extinct', 'Population increasing', 'All gone', 'Sick only'], correct: 1 },
+               { q: 'Community role?', options: ['None', 'Education & protection', 'Harm only', 'Ignore'], correct: 1 }
+           ],
+        visuals: [
+               { icon: '🛣️', title: 'Wildlife Crossings', desc: 'Safe paths over/under roads' },
+               { icon: '🏠', title: 'Protected Habitats', desc: 'Safe zones for animals' },
+               { icon: '🚦', title: 'Animal Warning Systems', desc: 'Alert drivers to wildlife' },
+               { icon: '🗑️', title: 'Animal-Safe Trash', desc: 'Prevent animals eating trash' }
+           ],
+        checklist: [
+               'Research 1 endangered species locally',
+               'Interview a conservationist',
+               'Learn about human conflicts',
+               'Design one coexistence solution',
+               'Create a protection plan',
+               'Test and track population changes'
+           ],
+        examples: [
+               { icon: '🛣️', title: 'Wildlife Overpass', desc: 'Safe bridge for animals' },
+               { icon: '🏠', title: 'Protected Corridor', desc: 'Safe habitat connection' },
+               { icon: '🚦', title: 'Animal Crossing Alert', desc: 'Warns drivers of wildlife' }
+           ]
+       }
+];
+
+function init() {
+    createBackground();
+    renderTopicGrid();
+    updateStats();
+}
+
+function createBackground() {
+    const container = document.getElementById('background-anim');
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+        particle.style.animationDelay = Math.random() * 25 + 's';
+        particle.style.animationDuration = (20 + Math.random() * 15) + 's';
+        container.appendChild(particle);
+    }
+}
+
+function renderTopicGrid() {
+    const grid = document.getElementById('topic-grid');
+    topics.forEach(topic => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = () => openTopic(topic.id);
+        card.innerHTML = `
+               <div class="card-icon">${topic.icon}</div>
+               <h3>${topic.name}</h3>
+               <p>${topic.description}</p>
+               <div class="card-stats">
+                   <div class="stat-badge">📚 Research Guide Included</div>
+                   <div class="stat-badge">🗺️ ${topic.flowchart.length} Steps</div>
+                   <div class="stat-badge">✨ Interactive</div>
+               </div>
+           `;
+        grid.appendChild(card);
+    });
+}
+
+function openTopic(topicId) {
+    const topic = topics.find(t => t.id === topicId);
+    if (!topic) return;
+
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('topic-view').classList.remove('hidden-section');
+
+    document.getElementById('topic-title').textContent = topic.icon + ' ' + topic.name;
+    document.getElementById('topic-header').textContent = topic.icon + ' ' + topic.name;
+    document.getElementById('topic-description').textContent = topic.description;
+
+    renderResearchGuide(topic);
+
+    const flowchart = document.getElementById('topic-flowchart');
+    flowchart.innerHTML = '';
+    topic.flowchart.forEach((step, index) => {
+        const stepEl = document.createElement('div');
+        stepEl.className = 'flow-step';
+        stepEl.innerHTML = `
+               <div class="icon">${step.icon}</div>
+               <h4>${step.step}</h4>
+               <p>${step.text}</p>
+           `;
+        flowchart.appendChild(stepEl);
+        
+        if (index < topic.flowchart.length - 1) {
+            const arrow = document.createElement('div');
+            arrow.className = 'flow-arrow';
+            arrow.innerHTML = '↓';
+            flowchart.appendChild(arrow);
+        }
+      });
+
+    const quizzesContainer = document.getElementById('topic-quizzes');
+    quizzesContainer.innerHTML = '';
+    topic.quizzes.forEach((quiz, index) => {
+        const quizEl = document.createElement('div');
+        quizEl.className = 'quiz-container';
+        quizEl.innerHTML = `
+               <div class="quiz-header">
+                   <div class="quiz-number">${index + 1}</div>
+                   <div class="quiz-question">${quiz.q}</div>
+               </div>
+               <div class="quiz-options">
+                   ${quiz.options.map((opt, i) => `
+                       <div class="quiz-option" onclick="checkAnswer(${index}, ${i}, ${quiz.correct}, this)">
+                           ${opt}
+                       </div>
+                   `).join('')}
+               </div>
+               <div class="quiz-feedback" id="feedback-${index}"></div>
+           `;
+        quizzesContainer.appendChild(quizEl);
+      });
+
+    const visuals = document.getElementById('visual-learning');
+    visuals.innerHTML = '';
+    topic.visuals.forEach(v => {
+        const visualEl = document.createElement('div');
+        visualEl.className = 'visual-card';
+        visualEl.innerHTML = `
+               <div class="icon">${v.icon}</div>
+               <h5>${v.title}</h5>
+               <p>${v.desc}</p>
+           `;
+        visuals.appendChild(visualEl);
+      });
+
+    const checklist = document.getElementById('action-checklist');
+    checklist.innerHTML = '';
+    topic.checklist.forEach((item, index) => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'checklist-item';
+        itemEl.id = `checklist-${index}`;
+        itemEl.textContent = item;
+        itemEl.onclick = function() {
+            this.classList.toggle('completed');
+            updateStats();
+        };
+        checklist.appendChild(itemEl);
+      });
+
+    const examples = document.getElementById('real-examples');
+    examples.innerHTML = '';
+    topic.examples.forEach(ex => {
+        const exEl = document.createElement('div');
+        exEl.className = 'gallery-item';
+        exEl.innerHTML = `
+               <div class="gallery-image">${ex.icon}</div>
+               <div class="gallery-content">
+                   <h5>${ex.title}</h5>
+                   <p>${ex.desc}</p>
+               </div>
+           `;
+        examples.appendChild(exEl);
+      });
+
+    window.scrollTo(0, 0);
+}
+
+function renderResearchGuide(topic) {
+    if (!topic.research) return;
+
+    const papersContainer = document.getElementById('research-papers');
+    papersContainer.innerHTML = '';
+    topic.research.papers.forEach(paper => {
+        const paperEl = document.createElement('div');
+        paperEl.className = 'research-item';
+        paperEl.innerHTML = `
+               <div class="title">📄 ${paper.title}</div>
+               <div class="author">👤 ${paper.author}</div>
+               <div class="link">🔗 <a href="${paper.link}" target="_blank">Read Paper</a></div>
+           `;
+        papersContainer.appendChild(paperEl);
+      });
+
+    const expertsContainer = document.getElementById('research-experts');
+    expertsContainer.innerHTML = '';
+    topic.research.experts.forEach(expert => {
+        const expertEl = document.createElement('div');
+        expertEl.className = 'research-item';
+        expertEl.innerHTML = `
+               <div class="title">👨‍🏫 ${expert.name}</div>
+               <div class="author">🏛️ ${expert.institution}</div>
+               <div class="author">🎯 ${expert.focus}</div>
+               <div class="link">📧 <a href="mailto:${expert.contact}">Contact Expert</a></div>
+           `;
+        expertsContainer.appendChild(expertEl);
+      });
+}
+
+function showMainMenu() {
+    document.getElementById('topic-view').classList.add('hidden-section');
+    document.getElementById('main-menu').style.display = 'block';
+    updateStats();
+    window.scrollTo(0, 0);
+}
+
+function checkAnswer(quizIndex, selected, correct, element) {
+    const options = element.parentElement.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById(`feedback-${quizIndex}`);
+    
+    options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+     });
+
+    if (selected === correct) {
+        element.classList.add('correct');
+        feedback.innerHTML = '✅ Correct! Great job! +10 points';
+        feedback.className = 'quiz-feedback show correct';
+        updateStats(10);
+     } else {
+        element.classList.add('incorrect');
+        options[correct].classList.add('correct');
+        feedback.innerHTML = '❌ Not quite. The correct answer was highlighted. +2 points';
+        feedback.className = 'quiz-feedback show incorrect';
+        updateStats(2);
+     }
+}
+
+function completeTopic() {
+    const topicId = document.querySelector('#topic-view .breadcrumb strong').textContent.split(' ')[1];
+    const topic = topics.find(t => t.id === topicId);
+    
+    const checklistItems = document.querySelectorAll('#action-checklist .checklist-item');
+    checklistItems.forEach(item => item.classList.add('completed'));
+    
+    alert(`🎉 Congratulations! You've completed the ${topic.icon} ${topic.name} topic!\n\nKeep exploring other topics to master FLL CANOPY innovation!`);
+    
+    updateStats(25, true);
+}
+
+let totalQuizzes = 0;
+let totalCorrect = 0;
+let totalTopics = 0;
+let totalScore = 0;
+let topicsCompleted = new Set();
+
+function updateStats(points = 0, topicComplete = false) {
+    if (points > 0) {
+        totalQuizzes++;
+        totalScore += points;
+     }
+    
+    if (topicComplete) {
+        const topicId = document.querySelector('#topic-view .breadcrumb strong').textContent.split(' ')[1];
+        if (!topicsCompleted.has(topicId)) {
+            topicsCompleted.add(topicId);
+            totalTopics++;
+         }
+     }
+    
+    document.getElementById('topics-completed').textContent = topicsCompleted.size;
+    document.getElementById('quizzes-completed').textContent = totalQuizzes;
+    document.getElementById('score-total').textContent = totalScore;
+    
+    const progress = (topicsCompleted.size / topics.length) * 100;
+    document.getElementById('main-progress').style.width = progress + '%';
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
